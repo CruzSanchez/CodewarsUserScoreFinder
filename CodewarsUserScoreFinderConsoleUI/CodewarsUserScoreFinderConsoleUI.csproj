@@ -6,6 +6,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="bin\Debug\netcoreapp3.1\CodewarsUserScoreFinderConsoleUI.deps.json" />
+    <Content Include="bin\Debug\netcoreapp3.1\CodewarsUserScoreFinderConsoleUI.runtimeconfig.dev.json" />
+    <Content Include="bin\Debug\netcoreapp3.1\CodewarsUserScoreFinderConsoleUI.runtimeconfig.json" />
+    <Content Include="bin\Debug\netcoreapp3.1\UserNames.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="bin\Debug\netcoreapp3.1\CodewarsScoreFinderLibrary.dll" />
+    <None Include="bin\Debug\netcoreapp3.1\CodewarsScoreFinderLibrary.pdb" />
+    <None Include="bin\Debug\netcoreapp3.1\CodewarsUserScoreFinderConsoleUI.dll" />
+    <None Include="bin\Debug\netcoreapp3.1\CodewarsUserScoreFinderConsoleUI.exe" />
+    <None Include="bin\Debug\netcoreapp3.1\CodewarsUserScoreFinderConsoleUI.pdb" />
+    <None Include="bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll" />
+    <None Include="bin\Debug\netcoreapp3.1\RestSharp.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="RestSharp" Version="106.11.7" />
   </ItemGroup>

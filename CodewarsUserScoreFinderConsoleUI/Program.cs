@@ -9,10 +9,9 @@ namespace CodewarsUserScoreFinderConsoleUI
         {
             ScoreRetriever retriever = new ScoreRetriever();
 
-            retriever.GetUser("CruzSanchez");
+            retriever.ExecuteOrder66();
 
             ConsoleLogging.PrintUserData();
-
 
             Console.ReadLine();
         }

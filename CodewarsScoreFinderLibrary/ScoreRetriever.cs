@@ -11,7 +11,17 @@ namespace CodewarsScoreFinderLibrary
         private readonly string _baseURL = @"https://www.codewars.com/api/v1/users/";
         public static List<User> Users { get; private set; } = new List<User>();
 
-        public void GetUser(string userName)
+        public void ExecuteOrder66()
+        {
+            string[] userNames = FileReader.ReadFile();
+
+            foreach (string userName in userNames)
+            {
+                GetUser(userName);
+            }
+        }
+
+        private void GetUser(string userName)
         {
             RestClient client = new RestClient(new Uri($"{_baseURL}{userName}"));
             RestRequest request = new RestRequest(Method.GET);
