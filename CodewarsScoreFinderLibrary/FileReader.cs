@@ -23,9 +23,10 @@ namespace CodewarsScoreFinderLibrary
 
                     return userNames;
                 }
-                catch (FileNotFoundException)
+                catch (FileNotFoundException e)
                 {
                     ConsoleLogging.Error("The file \"UserNames.txt\" was not found in the current directory. Terminating application");
+                    ConsoleLogging.Error(e.Message);
                     Environment.Exit(-1);                    
                 }
             }

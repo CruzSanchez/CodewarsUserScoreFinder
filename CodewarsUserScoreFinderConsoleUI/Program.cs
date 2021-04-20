@@ -7,6 +7,8 @@ namespace CodewarsUserScoreFinderConsoleUI
     {
         static void Main(string[] args)
         {
+            Console.Clear();
+
             ScoreRetriever retriever = new ScoreRetriever();
 
             retriever.ExecuteOrder66();
