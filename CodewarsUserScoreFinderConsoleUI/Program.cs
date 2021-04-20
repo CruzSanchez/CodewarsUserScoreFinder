@@ -13,6 +13,7 @@ namespace CodewarsUserScoreFinderConsoleUI
 
             ConsoleLogging.PrintUserData();
 
+
             Console.ReadLine();
         }
     }
