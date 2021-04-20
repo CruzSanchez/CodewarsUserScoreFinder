@@ -9,10 +9,11 @@ namespace CodewarsUserScoreFinderConsoleUI
         {
             ScoreRetriever retriever = new ScoreRetriever();
 
-            User user = retriever.GetUser("CruzSanchez");
+            retriever.GetUser("CruzSanchez");
 
-            Console.WriteLine($"Name: { user.Name } UserName: { user.UserName }");
-            
+            ConsoleLogging.PrintUserData();
+
+            Console.ReadLine();
         }
     }
 }

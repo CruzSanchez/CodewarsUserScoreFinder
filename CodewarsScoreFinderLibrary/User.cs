@@ -13,5 +13,6 @@ namespace CodewarsScoreFinderLibrary
         public int LeaderBoardPosition { get; set; }
         public List<string> Skills { get; set; }
         public Ranks Ranks { get; set; }
+        public CodeChallenges CodeChallenges { get; set; }
     }
 }
