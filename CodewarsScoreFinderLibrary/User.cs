@@ -10,7 +10,7 @@ namespace CodewarsScoreFinderLibrary
         public string Name { get; set; }
         public int Honor { get; set; }
         public string Clan { get; set; }
-        public int LeaderBoardPosition { get; set; }
+        public int? LeaderBoardPosition { get; set; }
         public List<string> Skills { get; set; }
         public Ranks Ranks { get; set; }
         public CodeChallenges CodeChallenges { get; set; }
