@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ConsoleTables;
+using System;
 using System.Linq;
 
 namespace CodewarsScoreFinderLibrary
@@ -7,12 +8,14 @@ namespace CodewarsScoreFinderLibrary
     {
         public static void PrintUserData()
         {
+            ConsoleTable table = new ConsoleTable("Name", "Username", "Honor", "Total Completed");
+            table.Configure(x => x.NumberAlignment = Alignment.Right);
+
             if (ScoreRetriever.Users.Count > 0)
             {
                 foreach (User user in ScoreRetriever.Users.OrderByDescending(x => x.Honor).ThenBy(x => x.Name))
                 {
-                    ConfigureUserDataOnConsole(user);
-                    NewLine();
+                    ConfigureUserDataOnConsole(user, table);
                 }
             }
             else
@@ -20,6 +23,7 @@ namespace CodewarsScoreFinderLibrary
                 Error("Your list is empty!");
             }
 
+            table.Write(Format.MarkDown);
             Console.ResetColor();
         }
 
@@ -29,31 +33,32 @@ namespace CodewarsScoreFinderLibrary
             Console.WriteLine(errorMessage);
         }
 
-        private static void DisplayUserInformation(User user)
+        private static void DisplayUserInformation(User user, ConsoleTable consoleTable)
         {
-            Console.WriteLine($"Name: {user.Name ??= "Unknown"} || Username: {user.UserName} || Honor: {user.Honor} || " +
-                                    $"TotalCompleted: {user.CodeChallenges.TotalCompleted}");            
+            consoleTable.AddRow(user.Name, user.UserName, user.Honor, user.CodeChallenges.TotalCompleted);
+            //Console.WriteLine($"Name: {user.Name ??= "Unknown"} || Username: {user.UserName} || Honor: {user.Honor} || " +
+            //                        $"TotalCompleted: {user.CodeChallenges.TotalCompleted}");            
         }
 
-        private static void ConfigureUserDataOnConsole(User user)
+        private static void ConfigureUserDataOnConsole(User user, ConsoleTable consoleTable)
         {
             switch (user.Ranks.Overall.Color)
             {
                 case "white":
                     SetConsoleColor(ConsoleColor.White);
-                    DisplayUserInformation(user);
+                    DisplayUserInformation(user, consoleTable);
                     break;
                 case "yellow":
                     SetConsoleColor(ConsoleColor.DarkYellow);
-                    DisplayUserInformation(user);
+                    DisplayUserInformation(user, consoleTable);
                     break;
                 case "blue":
                     SetConsoleColor(ConsoleColor.Blue);
-                    DisplayUserInformation(user);
+                    DisplayUserInformation(user, consoleTable);
                     break;
                 case "purple":
                     SetConsoleColor(ConsoleColor.Magenta);
-                    DisplayUserInformation(user);
+                    DisplayUserInformation(user, consoleTable);
                     break;                
             }            
         }
