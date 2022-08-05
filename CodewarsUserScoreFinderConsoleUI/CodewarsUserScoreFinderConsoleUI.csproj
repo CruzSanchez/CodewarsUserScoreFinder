@@ -6,13 +6,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="UserNames.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="bin\Debug\netcoreapp3.1\CodewarsUserScoreFinderConsoleUI.deps.json" />
     <Content Include="bin\Debug\netcoreapp3.1\CodewarsUserScoreFinderConsoleUI.runtimeconfig.dev.json" />
     <Content Include="bin\Debug\netcoreapp3.1\CodewarsUserScoreFinderConsoleUI.runtimeconfig.json" />
-    <Content Include="bin\Debug\netcoreapp3.1\UserNames.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="bin\Release\netcoreapp3.1\UserNames.txt">
+    <Content Include="UserNames.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

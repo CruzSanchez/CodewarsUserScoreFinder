@@ -2,14 +2,16 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using static CodewarsScoreFinderLibrary.Enums;
 
 namespace CodewarsScoreFinderLibrary
 {
     internal class FileReader
     {
+
         private static readonly string _filePath = $"{Directory.GetCurrentDirectory()}/UserNames.txt";
 
-        public static string[] ReadFile()
+        public static string[] ReadFile(Action<string, StatusCode> alertUser)
         {
             bool fileNotFound = true;
 
@@ -25,8 +27,8 @@ namespace CodewarsScoreFinderLibrary
                 }
                 catch (FileNotFoundException e)
                 {
-                    ConsoleLogging.Error("The file \"UserNames.txt\" was not found in the current directory. Terminating application");
-                    ConsoleLogging.Error(e.Message);
+                    alertUser("The file \"UserNames.txt\" was not found in the current directory. Terminating application", StatusCode.Error);
+                    alertUser(e.Message, StatusCode.Error);
                     Environment.Exit(-1);                    
                 }
             }

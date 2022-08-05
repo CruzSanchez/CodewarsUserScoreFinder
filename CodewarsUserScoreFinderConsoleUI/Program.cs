@@ -1,6 +1,8 @@
 ﻿using CodewarsScoreFinderLibrary;
 using System;
+using System.Diagnostics;
 using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 
 namespace CodewarsUserScoreFinderConsoleUI
 {
@@ -18,17 +20,17 @@ namespace CodewarsUserScoreFinderConsoleUI
         private const int MINIMIZE = 6;
         private const int RESTORE = 9;
         #endregion
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
             ShowWindow(ThisConsole, MAXIMIZE);
 
             Console.Clear();
 
-            ConsoleLogging.PrintAsciiArt();
+            //ConsoleLogging.PrintAsciiArt();
 
-            ScoreRetriever retriever = new ScoreRetriever();
+            ScoreRetriever retriever = new ScoreRetriever();;
 
-            retriever.ExecuteOrder66();
+            await retriever.ExecuteOrder66(ConsoleLogging.PassMessage);
 
             ConsoleLogging.PrintUserData();
 
