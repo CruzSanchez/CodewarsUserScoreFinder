@@ -1,9 +1,11 @@
-﻿using System;
+﻿using CodewarsScoreFinderLibrary;
+using static CodewarsScoreFinderLibrary.Enums;
+using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace CodewarsScoreFinderLibrary
+namespace CodewarsUserScoreFinderConsoleUI
 {
     public static class ConsoleLogging
     {
@@ -11,8 +13,8 @@ namespace CodewarsScoreFinderLibrary
 
         public static void PrintUserData()
         {
-            int consoleLeft = 50;
-            int consoleTop = 10;
+            int consoleLeft = 5;
+            int consoleTop = 2;
             if (ScoreRetriever.Users.Count > 0)
             {
                 foreach (User user in ScoreRetriever.Users.OrderByDescending(x => x.Honor).ThenBy(x => x.Name))
@@ -29,6 +31,7 @@ namespace CodewarsScoreFinderLibrary
             }
 
             Console.ResetColor();
+            Console.CursorVisible = false;
         }
 
         internal static void Error(string errorMessage)
@@ -37,10 +40,30 @@ namespace CodewarsScoreFinderLibrary
             Console.WriteLine(errorMessage);
         }
 
+        public static void PassMessage(string message, StatusCode statusCode)
+        {
+            switch (statusCode)
+            {
+                case StatusCode.Error:
+                    Error(message);
+                    break;
+                case StatusCode.Success:
+                    Console.WriteLine(message);
+                    break;
+                case StatusCode.Information:
+                    Console.WriteLine(message);
+                    break;
+                default:
+                    break;
+            }
+
+            
+        }
+
         private static void DisplayUserInformation(User user)
         {
-            Console.WriteLine($"Name: {user.Name ??= "Unknown",-20} ||\t Username: {user.UserName,-25} ||    Honor: {user.Honor,6}    ||    " +
-                                    $"TotalCompleted: {user.CodeChallenges.TotalCompleted,5}");
+            Console.WriteLine($"Name: {user.Name ??= "Unknown"} || Username: {user.UserName} || Honor: {user.Honor} || " +
+                                    $"TotalCompleted: {user.CodeChallenges.TotalCompleted}");
         }
 
         private static void ConfigureUserDataOnConsole(User user)
