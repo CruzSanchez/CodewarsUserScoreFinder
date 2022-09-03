@@ -13,31 +13,28 @@ namespace CodewarsUserScoreFinderConsoleUI
 
         public static void PrintUserData()
         {
-            int consoleLeft = 5;
-            int consoleTop = 2;
             if (ScoreRetriever.Users.Count > 0)
             {
                 foreach (User user in ScoreRetriever.Users.OrderByDescending(x => x.Honor).ThenBy(x => x.Name))
                 {
-                    Console.SetCursorPosition(consoleLeft, consoleTop);
                     ConfigureUserDataOnConsole(user);
                     NewLine();
-                    consoleTop += 2;
                 }
             }
             else
             {
                 Error("Your list is empty!");
             }
-
-            Console.ResetColor();
-            Console.CursorVisible = false;
         }
 
         internal static void Error(string errorMessage)
         {
-            SetConsoleColor(ConsoleColor.Red);
-            Console.WriteLine(errorMessage);
+            Console.WriteLine($"ERROR: {errorMessage}");
+        }
+
+        internal static void NewLine()
+        {
+            Console.WriteLine();
         }
 
         public static void PassMessage(string message, StatusCode statusCode)
@@ -71,57 +68,18 @@ namespace CodewarsUserScoreFinderConsoleUI
             switch (user.Ranks.Overall.Color)
             {
                 case "white":
-                    SetConsoleColor(ConsoleColor.White);
                     DisplayUserInformation(user);
                     break;
                 case "yellow":
-                    SetConsoleColor(ConsoleColor.DarkYellow);
                     DisplayUserInformation(user);
                     break;
                 case "blue":
-                    SetConsoleColor(ConsoleColor.Blue);
                     DisplayUserInformation(user);
                     break;
                 case "purple":
-                    SetConsoleColor(ConsoleColor.Magenta);
                     DisplayUserInformation(user);
                     break;
             }
-        }
-
-        private static void NewLine()
-        {
-            Console.WriteLine();
-        }
-
-        private static void SetConsoleColor(ConsoleColor consoleColor)
-        {
-            Console.ForegroundColor = consoleColor;
-        }
-
-        public static void PrintAsciiArt()
-        {
-            var task = Task.Factory.StartNew(async () =>
-            {
-                while (true)
-                {
-                    Console.SetCursorPosition(0,0);
-                    Console.WriteLine(@"      ::::::::   ::::::::  :::::::::  ::::::::::  :::       :::     :::     :::::::::   ::::::::          ::::::::   ::::::::   ::::::::  :::::::::  ::::::::::          :::::::::: ::::::::::: ::::    ::: :::::::::  :::::::::: :::::::::", Console.ForegroundColor = ColorSwap());
-                    Console.WriteLine(@"    :+:    :+: :+:    :+: :+:    :+: :+:         :+:       :+:   :+: :+:   :+:    :+: :+:    :+:        :+:    :+: :+:    :+: :+:    :+: :+:    :+: :+:                 :+:            :+:     :+:+:   :+: :+:    :+: :+:        :+:    :+:");
-                    Console.WriteLine(@"   +:+        +:+    +:+ +:+    +:+ +:+         +:+       +:+  +:+   +:+  +:+    +:+ +:+               +:+        +:+        +:+    +:+ +:+    +:+ +:+                 +:+            +:+     :+:+:+  +:+ +:+    +:+ +:+        +:+    +:+ ");
-                    Console.WriteLine(@"  +#+        +#+    +:+ +#+    +:+ +#++:++#    +#+  +:+  +#+ +#++:++#++: +#++:++#:  +#++:++#++        +#++:++#++ +#+        +#+    +:+ +#++:++#:  +#++:++#            :#::+::#       +#+     +#+ +:+ +#+ +#+    +:+ +#++:++#   +#++:++#:   ");
-                    Console.WriteLine(@" +#+        +#+    +#+ +#+    +#+ +#+         +#+ +#+#+ +#+ +#+     +#+ +#+    +#+        +#+               +#+ +#+        +#+    +#+ +#+    +#+ +#+                 +#+            +#+     +#+  +#+#+# +#+    +#+ +#+        +#+    +#+   ");
-                    Console.WriteLine(@"#+#    #+# #+#    #+# #+#    #+# #+#          #+#+# #+#+#  #+#     #+# #+#    #+# #+#    #+#        #+#    #+# #+#    #+# #+#    #+# #+#    #+# #+#                 #+#            #+#     #+#   #+#+# #+#    #+# #+#        #+#    #+#    ");
-                    Console.WriteLine(@"########   ########  #########  ##########    ###   ###   ###     ### ###    ###  ########          ########   ########   ########  ###    ### ##########          ###        ########### ###    #### #########  ########## ###    ###     ");
-                    await Task.Delay(250);
-                }
-            });
-        }
-
-        private static ConsoleColor ColorSwap()
-        {
-            var consoleColors = Enum.GetValues(typeof(ConsoleColor));
-            return (ConsoleColor)consoleColors.GetValue(rng.Next(1, consoleColors.Length - 1));
-        }
+        }        
     }
 }

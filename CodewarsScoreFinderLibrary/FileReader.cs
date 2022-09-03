@@ -9,7 +9,7 @@ namespace CodewarsScoreFinderLibrary
     internal class FileReader
     {
 
-        private static readonly string _filePath = $"{Directory.GetCurrentDirectory()}/UserNames.txt";
+        private static readonly string _filePath = $"./UserNames.txt";
 
         public static string[] ReadFile(Action<string, StatusCode> alertUser)
         {
